@@ -27,9 +27,9 @@ class DfsTestApplicationTests extends TestCase {
 
 	@Test
 	public void testExampleCustomMer(){
-		String dictionary[] = {"i", "like", "sam", "sung", "mobile", "icecream", "man go", "mango"};
+		String dictionary[] = {"i", "like", "sam", "sung", "mobile", "icecream","ice","cream", "man","go", "mango","and"};
 		DefaultDict dict  = new DefaultDict();
-		dict.wordBreak("ilikesamsungmobile",dictionary);
+		dict.wordBreak("ilikesamsungmobileandmango",dictionary);
 	}
 
 }

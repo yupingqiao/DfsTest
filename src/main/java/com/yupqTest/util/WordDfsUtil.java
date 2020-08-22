@@ -7,9 +7,8 @@ import java.util.ArrayList;
  * @date 2020/8/22
  */
 public class WordDfsUtil {
-    public static String dictionary[] = {"i","like","sam","sung","samsung","mobile","ice","cream","man","go","mango"};
 
-    public static boolean isContains(String word){
+    public static boolean isContains(String word,String[] dictionary){
         int n = dictionary.length;
         for (int i = 0; i < n; i++){
             if (dictionary[i].equals(word)){
@@ -20,24 +19,24 @@ public class WordDfsUtil {
     }
 
     public static void wordBreak(String str,String[] dict){
-        if(dict!=null){
-            dictionary = dict;
-        }
+
         ArrayList<String> arr = new ArrayList<String>();
-        wordBreakUtil(str, arr);
+        wordBreakUtil(str, arr,dict);
     }
-    public static void wordBreakUtil(String str,ArrayList<String> arr){
+    public static void wordBreakUtil(String str,ArrayList<String> arr,String[] dictionary){
         int len = str.length();
         if(len == 0){
-            System.out.println(arr);
+           // System.out.println(arr);
+            arr.stream().forEach(item -> System.out.print(item+" "));
+            System.out.println();
             return;
         }
         //DFS
         for(int i = 1; i <= len; i++){
             String subStr = str.substring(0, i);
-            if(isContains(subStr)){
+            if(isContains(subStr,dictionary)){
                 arr.add(subStr);
-                wordBreakUtil(str.substring(i), arr);
+                wordBreakUtil(str.substring(i), arr,dictionary);
                 arr.remove(arr.size()-1);
             }
         }

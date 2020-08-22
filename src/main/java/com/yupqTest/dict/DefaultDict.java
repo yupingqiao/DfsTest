@@ -10,7 +10,12 @@ import java.util.ArrayList;
  * context dict
  * */
 public class DefaultDict {
+    public static String dictionary[] = {"i","like","sam","sung","samsung","mobile","ice","cream","man","go","mango"};
+
     public void wordBreak(String s,String[] dict){
-         WordDfsUtil.wordBreak(s,dict);
+        if(dict == null){
+            dict = dictionary;
+        }
+        WordDfsUtil.wordBreak(s,dict);
     }
 }
