@@ -18,17 +18,24 @@ public class WordDfsUtil {
         return false;
     }
 
-    public static void wordBreak(String str,String[] dict){
+    public static ArrayList<String> wordBreak(String str,String[] dict){
 
         ArrayList<String> arr = new ArrayList<String>();
-        wordBreakUtil(str, arr,dict);
+        ArrayList<String> result = new ArrayList<String>();
+        wordBreakUtil(str, arr,dict,result);
+        return result;
     }
-    public static void wordBreakUtil(String str,ArrayList<String> arr,String[] dictionary){
+    public static void wordBreakUtil(String str,ArrayList<String> arr,String[] dictionary,ArrayList<String> result){
         int len = str.length();
         if(len == 0){
-           // System.out.println(arr);
-            arr.stream().forEach(item -> System.out.print(item+" "));
-            System.out.println();
+            String res = "";
+            for(int i=0;i<arr.size();i++){
+                res += arr.get(i);
+                if(i != arr.size() -1){
+                    res += " ";
+                }
+            }
+            result.add(res);
             return;
         }
         //DFS
@@ -36,7 +43,7 @@ public class WordDfsUtil {
             String subStr = str.substring(0, i);
             if(isContains(subStr,dictionary)){
                 arr.add(subStr);
-                wordBreakUtil(str.substring(i), arr,dictionary);
+                wordBreakUtil(str.substring(i), arr,dictionary,result);
                 arr.remove(arr.size()-1);
             }
         }
